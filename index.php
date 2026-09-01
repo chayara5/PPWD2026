@@ -8,6 +8,7 @@
 <body>
     <?php
         echo "Chayara Alima";
+        echo "Chayara Alima";
     ?>
 </body>
 </html>
