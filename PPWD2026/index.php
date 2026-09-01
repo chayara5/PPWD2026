@@ -6,6 +6,6 @@
     <title>Praktikum Pemrograman Web</title>
 </head>
 <body>
-    <?php echo "Hello, Chayara Alima"; ?>
+    <?php echo "Chayara Alima"; ?>
 </body>
 </html>
