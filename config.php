@@ -10,14 +10,13 @@
 // Kredensial database Laragon (default: user root, password kosong)
 $host   = 'localhost';
 $dbname = 'donasi_app';
-$user   = 'root@localhost';
-$pass   = '';
+$user = 'root';
+$pass = 'root';
 
 try {
     // PDO = PHP Data Object, cara modern & aman untuk konek ke database
     // charset=utf8mb4 supaya karakter khusus (emoji, dll) tersimpan dengan benar
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
-
+   $pdo = new PDO("mysql:host=$host;port=8889;dbname=$dbname;charset=utf8mb4", $user, $pass);
     // ERRMODE_EXCEPTION: kalau ada query yang error, PHP akan langsung
     // melempar Exception (bisa ditangkap dengan try-catch), bukan diam-diam gagal.
     // Ini memudahkan debugging saat belajar.
