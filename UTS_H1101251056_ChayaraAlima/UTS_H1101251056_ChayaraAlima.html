@@ -1,0 +1,54 @@
+<!DOCTYPE html> 
+<html lang="id">
+<head>
+    <meta charset="UTF-8"
+    <title>SOAL UTS-NOMOR 9</title>
+    <style>
+    body { font-family: Arial, Helvetica, sans-serif; max-width: 400px; margin: 30px auto; color:brown}
+    input { width: 100%; padding: 8px; margin-bottom: 10px; color:rgb(0, 75, 118)}
+    mark { background: rgb(203, 232, 206); }
+  </style>
+</head>
+<body>
+  <h2>Pencarian Data Mahasiswa</h2>
+  <input type="text" id="search" placeholder="Masukkan nama">
+  <ul id="daftar"></ul>
+  <p id="kosong" style="display:none; color:rgb(255, 0, 225);">Tidak ditemukan</p>
+    
+  <script>
+    const data = [
+        {nama: "Chayara Alima"},
+        {nama: "Andini salsabila"},
+        {nama: "Alnelka Parisha N."},
+        {nama: "Dhini Zakiyatul Wafa"},
+        {nama: "Nasywa Akmalia Hanif"},
+        {nama: "Desty Ayudia"},
+        {nama: "Dimas Luthfi Salim"},
+        {nama: "Nabila Pracita"},
+        {nama: "Sri Wahyuni"},
+        {nama: "Dimas Aditya"},
+    ];
+    
+    const search = document.getElementById("search");
+    const daftar = document.getElementById("daftar");
+    const kosong = document.getElementById("kosong");
+
+    function tampil(kata) {
+      const hasil = data.filter(m => m.nama.toLowerCase().includes(kata.toLowerCase()));
+
+      daftar.innerHTML = "";
+      kosong.style.display = hasil.length === 0 ? "block" : "none";
+
+      hasil.forEach(m => {
+        const teks = kata
+          ? m.nama.replace(new RegExp("(" + kata + ")", "gi"), "<mark>$1</mark>")
+          : m.nama;
+        daftar.innerHTML += "<li>" + teks + "</li>";
+      });
+  }
+
+    search.addEventListener("keyup", () => tampil(search.value));
+    tampil("");
+  </script>
+</body>
+</html>
