@@ -1,51 +1,125 @@
-// ========== 1. TYPING EFFECT ==========
-const typingText = document.getElementById('typing-text');
-const names = ['Ahmad Fauzi', 'Web Developer', 'Mahasiswa SI'];
-let nameIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
+document.addEventListener('DOMContentLoaded', () => {
 
-function typeEffect() {
-  const currentName = names[nameIndex];
-  if (isDeleting) {
-    typingText.textContent = currentName.substring(0, charIndex - 1);
-    charIndex--;
-  } else {
-    typingText.textContent = currentName.substring(0, charIndex + 1);
-    charIndex++;
+  // ==========================================
+  // 1. TYPING EFFECT
+  // ==========================================
+  const typingText = document.getElementById('typing-text');
+
+  if (typingText) {
+    const names = ['Chabiru!', 'a Web Developer', 'an Information Systems Student', 'a UI/UX Enthusiast', 'a Tech Explorer'];
+    let nameIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+      const currentName = names[nameIndex];
+
+      if (isDeleting) {
+        typingText.textContent = currentName.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typingText.textContent = currentName.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      let delay = isDeleting ? 40 : 80;
+
+      if (!isDeleting && charIndex === currentName.length) {
+        delay = 1800;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        nameIndex = (nameIndex + 1) % names.length;
+        delay = 400;
+      }
+
+      setTimeout(typeEffect, delay);
+    }
+
+    typeEffect();
   }
 
-  let delay = isDeleting ? 50 : 100;
-  if (!isDeleting && charIndex === currentName.length) {
-    delay = 2000; // Jeda saat teks selesai diketik
-    isDeleting = true;
-  } else if (isDeleting && charIndex === 0) {
-    isDeleting = false;
-    nameIndex = (nameIndex + 1) % names.length;
-    delay = 500; // Jeda sebelum mengetik kata baru
+  // ==========================================
+  // 3. VALIDASI FORM CONTACT
+  // ==========================================
+  const form = document.getElementById('contact-form');
+
+  if (form) {
+    const successMsg = document.getElementById('form-success');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let isValid = true;
+
+      document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+      if (successMsg) successMsg.style.display = 'none';
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (name === '') {
+        document.getElementById('name-error').textContent = 'Nama wajib diisi.';
+        isValid = false;
+      }
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (email === '') {
+        document.getElementById('email-error').textContent = 'Email wajib diisi.';
+        isValid = false;
+      } else if (!emailPattern.test(email)) {
+        document.getElementById('email-error').textContent = 'Format email tidak valid.';
+        isValid = false;
+      }
+
+      if (message === '') {
+        document.getElementById('message-error').textContent = 'Pesan wajib diisi.';
+        isValid = false;
+      } else if (message.length < 10) {
+        document.getElementById('message-error').textContent = 'Pesan minimal 10 karakter.';
+        isValid = false;
+      }
+
+      if (isValid) {
+        if (successMsg) successMsg.style.display = 'block';
+        form.reset();
+      }
+    });
   }
-  setTimeout(typeEffect, delay);
-}
-typeEffect(); // Mulai efek
 
-// ========== 2. GENERATE PROJECT CARDS ==========
-const projects = [
-  { title: 'Website Profil', desc: 'Website profil dengan HTML & CSS', image: 'https://via.placeholder.com/300x200/2563eb/fff?text=Profil' },
-  { title: 'Kalkulator JS', desc: 'Kalkulator interaktif', image: 'https://via.placeholder.com/300x200/2563eb/fff?text=Kalkulator' },
-  { title: 'Form Interaktif', desc: 'Form pendaftaran dengan validasi', image: 'https://via.placeholder.com/300x200/2563eb/fff?text=Form' }
-];
+  // ==========================================
+  // 4. DARK / LIGHT MODE TOGGLE
+  // ==========================================
+  const themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  }
 
-const projectGrid = document.getElementById('project-grid');
-projects.forEach(project => {
-  const card = document.createElement('div');
-  card.className = 'project-card';
-  card.innerHTML = `
-    <img src="${project.image}" alt="${project.title}">
-    <h3>${project.title}</h3>
-    <p>${project.desc}</p>
-  `;
-  card.addEventListener('click', () => {
-    alert(`Anda memilih proyek: ${project.title}`);
-  });
-  projectGrid.appendChild(card);
+  // ==========================================
+  // 5. SCROLL-SPY: highlight menu sesuai section aktif
+  // ==========================================
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  if (sections.length && navLinks.length && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.dataset.section === id);
+          });
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+
+    sections.forEach(section => observer.observe(section));
+  }
+
 });
