@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toko Online - Modern Theme</title>
+
+  <!-- Import Library jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <style>
+    :root {
+      --cream-bg: #f8f6f0;
+      --cream-card: #ffffff;
+      --navy-main: #1e293b;
+      --navy-light: #334155;
+      --baby-blue: #e0f2fe;
+      --baby-blue-hover: #bae6fd;
+      --baby-blue-border: #bae6fd;
+      --sage-green: #87a896;
+      --sage-dark: #4a6b58;
+      --sage-light: #e8f0eb;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --danger: #ef4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--cream-bg);
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    /* Header Navigasi */
+    header {
+      background-color: var(--navy-main);
+      color: #ffffff;
+      padding: 18px 0;
+      box-shadow: 0 4px 12px rgba(30, 41, 59, 0.15);
+      margin-bottom: 30px;
+    }
+
+    header .header-container {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    header .tagline {
+      font-size: 13px;
+      color: var(--baby-blue);
+    }
+
+    /* Layout Utama Grid */
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 0 20px 40px 20px;
+      display: grid;
+      grid-template-columns: 1.8fr 1.2fr;
+      gap: 25px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Card Component */
+    .card {
+      background: var(--cream-card);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid rgba(186, 230, 253, 0.5);
+      box-shadow: 0 10px 25px -5px rgba(30, 41, 59, 0.05);
+      margin-bottom: 25px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      color: var(--navy-main);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Catalog Produk Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .product-card {
+      background: var(--cream-bg);
+      border: 1px solid var(--baby-blue-border);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(30, 41, 59, 0.08);
+    }
+
+    .product-card h4 {
+      font-size: 15px;
+      color: var(--navy-main);
+      margin-bottom: 6px;
+    }
+
+    .product-card .price {
+      color: var(--sage-dark);
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    /* Tombol Style */
+    .btn {
+      background-color: var(--navy-main);
+      color: #ffffff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      width: 100%;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn:hover {
+      background-color: var(--navy-light);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn:disabled {
+      background-color: #cbd5e1;
+      cursor: not-allowed;
+    }
+
+    .btn-sage {
+      background-color: var(--sage-green);
+      color: #ffffff;
+    }
+
+    .btn-sage:hover {
+      background-color: var(--sage-dark);
+    }
+
+    .btn-qty {
+      background-color: var(--baby-blue);
+      color: var(--navy-main);
+      border: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .btn-qty:hover {
+      background-color: var(--baby-blue-hover);
+    }
+
+    /* Keranjang List */
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--baby-blue);
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-item-info strong {
+      color: var(--navy-main);
+      font-size: 14px;
+    }
+
+    .cart-item-info small {
+      color: var(--text-muted);
+    }
+
+    .total-box {
+      background-color: var(--baby-blue);
+      padding: 16px;
+      border-radius: 12px;
+      margin-top: 15px;
+    }
+
+    .discount-badge {
+      display: inline-block;
+      background-color: var(--sage-light);
+      color: var(--sage-dark);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-top: 4px;
+    }
+
+    /* Riwayat Belanja */
+    .riwayat-item {
+      background-color: var(--cream-bg);
+      border-left: 4px solid var(--sage-green);
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+
+    .riwayat-item strong {
+      color: var(--navy-main);
+    }
+
+    /* Modal Styling */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(30, 41, 59, 0.5);
+      backdrop-filter: blur(4px);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: var(--cream-card);
+      padding: 28px;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 420px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      border: 1px solid var(--baby-blue-border);
+    }
+
+    .modal-content h3 {
+      color: var(--navy-main);
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy-main);
+      margin-bottom: 5px;
+    }
+
+    .form-group input, 
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      background-color: var(--cream-bg);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .form-group input:focus, 
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--sage-green);
+      background-color: #ffffff;
+    }
+
+    .error {
+      color: var(--danger);
+      font-size: 12px;
+      display: none;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <div class="header-container">
+      <div>
+        <h1>Store Checkout</h1>
+        <span class="tagline">Praktikum E-Commerce & LocalStorage</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    
+    <!-- Bagian Kiri: Katalog & Riwayat -->
+    <div>
+      <!-- Katalog Produk -->
+      <div class="card">
+        <h3>🛍️ Katalog Produk</h3>
+        <div class="product-grid">
+          <div class="product-card">
+            <h4>Mouse Wireless</h4>
+            <div class="price">Rp 60.000</div>
+            <button class="btn btn-sage" onclick="tambahKeKeranjang(1, 'Mouse Wireless', 60000)">+ Keranjang</button>
+          </div>
+
+          <div class="product-card">
+            <h4>Keyboard Mechanical</h4>
+            <div class="price">Rp 150.000</div>
+            <button class="btn btn-sage" onclick="tambahKeKeranjang(2, 'Keyboard Mechanical', 150000)">+ Keranjang</button>
+          </div>
+
+          <div class="product-card">
+            <h4>Headset Gaming</h4>
+            <div class="price">Rp 200.000</div>
+            <button class="btn btn-sage" onclick="tambahKeKeranjang(3, 'Headset Gaming', 200000)">+ Keranjang</button>
+          </div>
+
+          <div class="product-card">
+            <h4>Webcam HD 1080p</h4>
+            <div class="price">Rp 180.000</div>
+            <button class="btn btn-sage" onclick="tambahKeKeranjang(4, 'Webcam HD 1080p', 180000)">+ Keranjang</button>
+          </div>
+
+          <div class="product-card">
+            <h4>Mousepad Deskmat XL</h4>
+            <div class="price">Rp 45.000</div>
+            <button class="btn btn-sage" onclick="tambahKeKeranjang(5, 'Mousepad Deskmat XL', 45000)">+ Keranjang</button>
+          </div>
+
+          <div class="product-card">
+            <h4>Stand Laptop Aluminium</h4>
+            <div class="price">Rp 85.000</div>
+            <button class="btn btn-sage" onclick="tambahKeKeranjang(6, 'Stand Laptop Aluminium', 85000)">+ Keranjang</button>
+          </div>
+
+          <div class="product-card">
+            <h4>USB Hub Type-C</h4>
+            <div class="price">Rp 75.000</div>
+            <button class="btn btn-sage" onclick="tambahKeKeranjang(7, 'USB Hub Type-C', 75000)">+ Keranjang</button>
+          </div>
+
+          <div class="product-card">
+            <h4>Flashdisk 64GB</h4>
+            <div class="price">Rp 50.000</div>
+            <button class="btn btn-sage" onclick="tambahKeKeranjang(8, 'Flashdisk 64GB', 50000)">+ Keranjang</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Riwayat Belanja (Latihan 2) -->
+      <div class="card">
+        <h3>📜 Riwayat Transaksi (localStorage)</h3>
+        <div id="listRiwayat">
+          <!-- Item riwayat dari localStorage -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Bagian Kanan: Keranjang Belanja -->
+    <div>
+      <div class="card">
+        <h3>🛒 Ringkasan Belanja</h3>
+        <div id="cartItems">
+          <p style="color: var(--text-muted); text-align: center; padding: 20px 0;">Keranjang belanja kosong.</p>
+        </div>
+
+        <div class="total-box">
+          <div style="font-size: 13px; color: var(--text-muted);">Total Pembayaran:</div>
+          <div id="cartTotal" style="margin-top: 4px;"><strong>Rp 0</strong></div>
+        </div>
+
+        <button id="btnCheckout" class="btn" style="margin-top: 18px;" disabled>Checkout Pesanan</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Modal Form Data Pembeli (Latihan 3) -->
+  <div id="modalCheckout" class="modal">
+    <div class="modal-content">
+      <h3>📋 Data Pembeli</h3>
+      <form id="formPembeli">
+        <div class="form-group">
+          <label for="namaPembeli">Nama Lengkap</label>
+          <input type="text" id="namaPembeli" placeholder="Masukkan nama lengkap">
+          <span id="errNama" class="error">Nama minimal 3 karakter</span>
+        </div>
+
+        <div class="form-group">
+          <label for="alamatPembeli">Alamat Pengiriman</label>
+          <textarea id="alamatPembeli" rows="3" placeholder="Masukkan alamat lengkap"></textarea>
+          <span id="errAlamat" class="error">Alamat minimal 5 karakter</span>
+        </div>
+
+        <div class="form-group">
+          <label for="nohpPembeli">Nomor HP / WhatsApp</label>
+          <input type="text" id="nohpPembeli" placeholder="Contoh: 081234567890">
+          <span id="errNoHP" class="error">Nomor HP minimal 10 digit angka</span>
+        </div>
+
+        <button type="submit" class="btn btn-sage" style="margin-top: 10px;">Konfirmasi & Bayar</button>
+        <button type="button" class="btn" style="background-color: #94a3b8; margin-top: 8px;" onclick="$('#modalCheckout').fadeOut()">Batal</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let cart = [];
+
+    // Fungsi Tambah Barang ke Keranjang
+    function tambahKeKeranjang(id, nama, harga) {
+      const item = cart.find(i => i.id === id);
+      if (item) {
+        item.qty += 1;
+      } else {
+        cart.push({ id, nama, harga, qty: 1 });
+      }
+      updateCartUI();
+    }
+
+    // Fungsi Ubah Jumlah Item (+/-)
+    function ubahQty(id, delta) {
+      const item = cart.find(i => i.id === id);
+      if (item) {
+        item.qty += delta;
+        if (item.qty <= 0) {
+          cart = cart.filter(i => i.id !== id);
+        }
+      }
+      updateCartUI();
+    }
+
+    // =========================================================================
+    // LATIHAN 1: Diskon 10% jika total > Rp 100.000
+    // =========================================================================
+    function updateCartUI() {
+      const $cartItems =$('#cartItems');
+      $cartItems.empty();
+
+      if (cart.length === 0) {
+        $cartItems.html('<p style="color: var(--text-muted); text-align: center; padding: 20px 0;">Keranjang belanja kosong.</p>');
+        $('#cartTotal').html('<strong>Rp 0</strong>');
+        $('#btnCheckout').prop('disabled', true);
+        return;
+      }
+
+      $('#btnCheckout').prop('disabled', false);
+
+      cart.forEach(item => {
+        $cartItems.append(`
+          <div class="cart-item">
+            <div class="cart-item-info">
+              <strong>${item.nama}</strong><br>
+              <small>Rp ${item.harga.toLocaleString('id-ID')} × ${item.qty}</small>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <button class="btn-qty" onclick="ubahQty(${item.id}, -1)">-</button>
+              <span style="font-size: 14px; font-weight: 600; min-width: 16px; text-align: center;">${item.qty}</span>
+              <button class="btn-qty" onclick="ubahQty(${item.id}, 1)">+</button>
+            </div>
+          </div>
+        `);
+      });
+
+      // Kode Sesuai Soal Latihan 1
+      let totalHarga = cart.reduce((sum, item) => sum + (item.harga * item.qty), 0);
+
+      if (totalHarga > 100000) {
+        const diskon = totalHarga * 0.1;
+        totalHarga -= diskon;
+
+        $('#cartTotal').html(`
+          <span style="text-decoration: line-through; color: var(--danger); font-size: 0.85em;">
+            Rp ${(totalHarga + diskon).toLocaleString('id-ID')}
+          </span><br>
+          <strong style="color: var(--sage-dark); font-size: 1.1em;">
+            Rp ${totalHarga.toLocaleString('id-ID')}
+          </strong>
+          <div><span class="discount-badge">Diskon 10% Diterapkan</span></div>
+        `);
+      } else {
+        $('#cartTotal').html(`<strong style="font-size: 1.1em; color: var(--navy-main);">Rp ${totalHarga.toLocaleString('id-ID')}</strong>`);
+      }
+    }
+
+    // =========================================================================
+    // LATIHAN 2: Simpan Riwayat ke localStorage
+    // =========================================================================
+    function simpanRiwayat(total, qty) {
+      const riwayat = JSON.parse(localStorage.getItem('riwayat')) || [];
+      riwayat.push({ tanggal: new Date().toISOString(), total, qty });
+      localStorage.setItem('riwayat', JSON.stringify(riwayat));
+      tampilkanRiwayat();
+    }
+
+    function tampilkanRiwayat() {
+      const riwayat = JSON.parse(localStorage.getItem('riwayat')) || [];
+      const $list =$('#listRiwayat');
+      $list.empty();
+
+      if (riwayat.length === 0) {
+        $list.html('<p style="color: var(--text-muted); font-size: 13px;">Belum ada riwayat transaksi.</p>');
+        return;
+      }
+
+      riwayat.slice().reverse().forEach((item, index) => {
+        const tgl = new Date(item.tanggal).toLocaleString('id-ID', {
+          dateStyle: 'medium',
+          timeStyle: 'short'
+        });
+        $list.append(`
+          <div class="riwayat-item">
+            <strong>Transaksi #${riwayat.length - index}</strong> — <small style="color: var(--text-muted);">${tgl}</small><br>
+            <span>Total: <strong>${item.qty} Item</strong> | Bayar: <strong style="color: var(--sage-dark);">Rp ${item.total.toLocaleString('id-ID')}</strong></span>
+          </div>
+        `);
+      });
+    }
+
+    // =========================================================================
+    // LATIHAN 3: Form Data Pembeli dengan Validasi Modal
+    // =========================================================================
+    $(document).ready(function() {
+      tampilkanRiwayat();
+
+      // Buka Modal saat Tombol Checkout diklik
+      $('#btnCheckout').click(function() {
+        if (cart.length > 0) {
+          $('#modalCheckout').css('display', 'flex').hide().fadeIn(200);
+        }
+      });
+
+      // Validasi & Process Form
+      $('#formPembeli').submit(function(e) {
+        e.preventDefault();
+        let valid = true;
+
+        const nama = $('#namaPembeli').val().trim();
+        const alamat = $('#alamatPembeli').val().trim();
+        const nohp = $('#nohpPembeli').val().trim();
+
+        // Validasi Nama (min 3 karakter)
+        if (nama.length < 3) {
+          $('#errNama').show();
+          valid = false;
+        } else {
+          $('#errNama').hide();
+        }
+
+        // Validasi Alamat (min 5 karakter)
+        if (alamat.length < 5) {
+          $('#errAlamat').show();
+          valid = false;
+        } else {
+          $('#errAlamat').hide();
+        }
+
+        // Validasi No HP (angka min 10 digit)
+        if (!/^[0-9]{10,15}$/.test(nohp)) {$('#errNoHP').show();
+          valid = false;
+        } else {
+          $('#errNoHP').hide();
+        }
+
+        // Jika Validasi Sukses
+        if (valid) {
+          let rawTotal = cart.reduce((sum, item) => sum + (item.harga * item.qty), 0);
+          let totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+          let totalFinal = rawTotal > 100000 ? rawTotal * 0.9 : rawTotal;
+
+          // Simpan Riwayat
+          simpanRiwayat(totalFinal, totalQty);
+
+          alert(`Pembayaran Berhasil!\n\nTerima kasih ${nama}, pesanan Anda sedang diproses dan akan dikirim ke:\n${alamat}`);
+
+          // Reset Keranjang & Form
+          cart = [];
+          updateCartUI();
+          $('#modalCheckout').fadeOut(200);
+          this.reset();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
