@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Profile Interaktif</title>
+  
+  <!-- Import jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  
+  <!-- CSS Disatukan di Dalam Tag Style -->
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      width: 100%;
+      max-width: 450px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+    }
+
+    h2, h3 {
+      margin-top: 0;
+      color: #333333;
+    }
+
+    .skill-tag {
+      display: inline-block;
+      background: #e4e6eb;
+      color: #050505;
+      padding: 6px 12px;
+      margin: 4px 2px;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .btn {
+      background-color: #6f8fb1;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      margin: 6px 3px 0 0;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #083667;
+    }
+
+    .btn-reset {
+      background-color: #6c757d;
+    }
+
+    .btn-reset:hover {
+      background-color: #5a6268;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #444;
+    }
+
+    .form-group input, 
+    .form-group textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-family: inherit;
+    }
+
+    .error {
+      color: #d9534f;
+      display: none;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .success {
+      color: #357644;
+      display: none;
+      margin-top: 15px;
+      font-weight: bold;
+      text-align: center;
+      padding: 10px;
+      background-color: #d4edda;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Card Profil -->
+  <div class="card" id="profileCard">
+    <h2 id="profileName">Chayara Alima</h2>
+    <p id="profileTitle" style="color: #666;">Web Developer & jQuery Enthusiast</p>
+    <div id="skillList">
+      <span class="skill-tag">HTML5</span>
+      <span class="skill-tag">CSS3</span>
+      <span class="skill-tag">JavaScript</span>
+      <span class="skill-tag">jQuery</span>
+    </div>
+    <br>
+    <button class="btn" id="btnGantiNama">Ganti Nama</button>
+    <button class="btn" id="btnTambahSkill">Tambah Skill</button>
+    <button class="btn" id="btnAnimasi">Efek Fade & Slide</button>
+    <button class="btn btn-reset" id="btnReset">Reset</button>
+  </div>
+
+  <!-- Card Form Kontak -->
+  <div class="card">
+    <h3>Form Kontak</h3>
+    <form id="contactForm">
+      <div class="form-group">
+        <label for="nama">Nama Lengkap</label>
+        <input type="text" id="nama" placeholder="Masukkan nama">
+        <span class="error" id="errNama">Masukkan nama minimal 3 karakter</span>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" placeholder="contoh@domain.com">
+        <span class="error" id="errEmail">Masukkan email yang valid</span>
+      </div>
+
+      <div class="form-group">
+        <label for="pesan">Pesan</label>
+        <textarea id="pesan" rows="3" placeholder="Tulis pesan..."></textarea>
+        <span class="error" id="errPesan">Tulis pesan minimal 10 karakter</span>
+      </div>
+
+      <button type="submit" class="btn">Kirim Pesan</button>
+      <button type="reset" class="btn btn-reset">Reset Form</button>
+    </form>
+    <div class="success" id="successMessage">Pesan berhasil dikirim!</div>
+  </div>
+
+  <!-- JavaScript jQuery -->
+  <script>
+    $(document).ready(function() {
+      // 1. Manipulasi DOM & Efek
+      $('#btnGantiNama').click(function() {
+        $('#profileName').text('Chabiru').css('color', '#2a5298');
+      });
+
+      $('#btnTambahSkill').click(function() {
+        $('#skillList').append('<span class="skill-tag">Swimming</span>');
+      });
+
+      $('#btnAnimasi').click(function() {
+        $('#profileCard').fadeOut(300).fadeIn(600).slideUp(200).slideDown(300);
+      });
+
+      $('#btnReset').click(function() {
+        $('#profileName').text('Chayara Alima').css('color', '#333333');
+        $('#skillList').html('<span class="skill-tag">HTML5</span><span class="skill-tag">CSS3</span><span class="skill-tag">JavaScript</span><span class="skill-tag">jQuery</span>');
+      });
+
+      // 2. Validasi Form
+      $('#contactForm').submit(function(e) {
+        e.preventDefault();
+        let valid = true;
+
+        if ($('#nama').val().trim().length < 3) {
+          $('#errNama').show();
+          valid = false;
+        } else {
+          $('#errNama').hide();
+        }
+
+        let emailVal = $('#email').val().trim();
+        if (emailVal === '' || !emailVal.includes('@')) {
+          $('#errEmail').show();
+          valid = false;
+        } else {
+          $('#errEmail').hide();
+        }
+
+        if ($('#pesan').val().trim().length < 10) {
+          $('#errPesan').show();
+          valid = false;
+        } else {
+          $('#errPesan').hide();
+        }
+
+        if (valid) {
+          $('#successMessage').fadeIn().delay(2000).fadeOut();
+          this.reset();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
