@@ -19,3 +19,20 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./UTS_H1101251056_ChayaraAlima/
           server-dir: /htdocs/
+name: Deploy to Teacher Server
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Trigger aaPanel Webhook
+        uses: tunnaduong/aapanel-deploy-action@v1.0
+        with:
+          panel_url: https://103.171.84.81:25181
+          webhook_key: ${{ secrets.AAPANEL_WEBHOOK_KEY }}A
