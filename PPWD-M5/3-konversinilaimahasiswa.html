@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>\Program Konversi Nilai Mahasiswa Sederhana</title>
+</head>
+<body>
+
+<h2>Konversi Nilai Mahasiswa Sederhana</h2>
+
+<input type="number" id="inputNilai" placeholder="Masukkan Nilai (0-100)"><button onclick="konversiNilai()">Konversi</button>
+
+<p id="idTarget"></p>
+
+<script>
+function konversiNilai() {
+    let nilai = Number(document.getElementById('inputNilai').value);
+    let grade = '';
+
+    if (nilai >= 90 && nilai <= 100) {
+        grade = "Grade A"
+    } else if (nilai >= 80 && nilai <= 89) {
+        grade = "Grade B"
+    } else if (nilai >= 70 && nilai <= 79) {
+        grade = "Grade C"
+    } else if (nilai >= 60 && nilai <= 69) {
+        grade = "Grade D"
+    } else if (nilai >= 0 && nilai < 60) {
+        grade = "Grade E"    
+    } else {
+        grade = 'Nilai tidak valid! Masukkan angka 0-100!'
+    }
+
+    document.getElementById('idTarget').innerHTML = "Nilai: " + nilai + " --> " + "<br>Grade: " + grade;
+}
+</script>
+
+</body>
+</html>
+
+<style>
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #eaf2fb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+h2 {
+  color: #0d3b66;
+}
+
+input[type="number"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #4a90e2;
+  border-radius: 6px;
+  outline: none;
+  margin-right: 8px;
+}
+
+input[type="number"]:focus {
+  border-color: #0d3b66;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #1e5fa8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0d3b66;
+}
+
+#idTarget {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #0d3b66;
+  background-color: #dceafc;
+  padding: 12px 20px;
+  border-radius: 8px;
+  min-width: 200px;
+  text-align: center;
+}
+</style>

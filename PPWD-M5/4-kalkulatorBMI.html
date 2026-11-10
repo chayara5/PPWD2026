@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Kalkulator BMI</title>
+<style>
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #eaf2fb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+ 
+h2 {
+  color: #0d3b66;
+}
+ 
+label {
+  font-size: 14px;
+  color: #1e5fa8;
+  font-weight: bold;
+}
+ 
+input[type="number"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #4a90e2;
+  border-radius: 6px;
+  outline: none;
+  margin-top: 4px;
+}
+ 
+input[type="number"]:focus {
+  border-color: #0d3b66;
+}
+ 
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #1e5fa8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+ 
+button:hover {
+  background-color: #0d3b66;
+}
+ 
+#idTarget {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #0d3b66;
+  background-color: #dceafc;
+  padding: 12px 20px;
+  border-radius: 8px;
+  min-width: 220px;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+ 
+<h2>Kalkulator BMI</h2>
+ 
+<label for="inputBerat">Berat Badan (kg):</label>
+<input type="number" id="inputBerat">
+<br><br>
+ 
+<label for="inputTinggi">Tinggi Badan (cm):</label>
+<input type="number" id="inputTinggi">
+<br><br>
+ 
+<button onclick="hitungBMI()">Hitung BMI</button>
+ 
+<p id="idTarget"></p>
+ 
+<script>
+function hitungBMI() {
+    let berat = Number(document.getElementById('inputBerat').value);
+    let tinggiCm = Number(document.getElementById('inputTinggi').value);
+ 
+    if (berat <= 0 || tinggiCm <= 0 || isNaN(berat) || isNaN(tinggiCm)) {
+        document.getElementById('idTarget').innerHTML = "Mohon masukkan berat badan dan tinggi badan yang valid!";
+        return;
+    }
+ 
+    let tinggiM = tinggiCm / 100;
+    let bmi = berat / (tinggiM * tinggiM);
+ 
+    let status = ' ';
+ 
+    if (bmi < 18.5) {
+        status = "Kurus";
+    } else if (bmi >= 18.5 && bmi < 25) {
+        status = "Normal (Ideal)";
+    } else if (bmi >= 25 && bmi < 30) {
+        status = "Gemuk (Overweight)";
+    } else {
+        status = "Kegemukan (Obesitas)";
+    }
+ 
+    document.getElementById('idTarget').innerHTML = "BMI Anda: " + bmi.toFixed(1) + "<br>Status: " + status;
+}
+</script>
+ 
+</body>
+</html>
+ 

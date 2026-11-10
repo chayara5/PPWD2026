@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portofolio Yan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f5f4f8; --kertas: #ffffff; --teks: #1d1b2e; --samar: #666379;
+            --garis: #dedce8; --aksen: #0f766e; --aksen-bg: #d9f0ed;
+        }
+        :root[data-theme="dark"] {
+            --bg: #121317; --kertas: #1b1c22; --teks: #ecebf3; --samar: #a3a1b4;
+            --garis: #2d2e38; --aksen: #5eead4; --aksen-bg: #173a37;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; font-family: "Jost", system-ui, sans-serif; font-size: 1.05rem;
+            line-height: 1.6; color: var(--teks); background: var(--bg);
+        }
+        h1, h2, h3 { font-family: "Playfair Display", Georgia, serif; }
+        .header {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1000px; margin: 0 auto; padding: 20px;
+        }
+        .logo { margin: 0; font-size: 1.5rem; }
+        #tombol-tema {
+            font: inherit; font-size: .95rem; color: var(--teks); cursor: pointer;
+            background: var(--kertas); border: 1px solid var(--garis);
+            padding: 6px 16px; border-radius: 999px;
+        }
+        #tombol-tema:hover { border-color: var(--aksen); }
+        .isi { max-width: 1000px; margin: 0 auto; padding: 0 20px 40px; }
+        .perkenalan { padding: 40px 0 20px; max-width: 640px; }
+        .perkenalan h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; margin: 0 0 12px; }
+        .perkenalan p { margin: 0; color: var(--samar); }
+        .judul-bagian { font-size: 1.6rem; margin: 32px 0 12px; }
+        #cari {
+            width: 100%; font: inherit; padding: 11px 14px; color: var(--teks);
+            background: var(--kertas); border: 1px solid var(--garis); border-radius: 8px;
+        }
+        #cari:focus, a:focus-visible, button:focus-visible { outline: 2px solid var(--aksen); outline-offset: 2px; }
+        .daftar-proyek {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 16px; margin-top: 20px;
+        }
+        .kartu {
+            display: block; padding: 18px; color: inherit; text-decoration: none;
+            background: var(--kertas); border: 1px solid var(--garis); border-radius: 10px;
+        }
+        .kartu:hover { border-color: var(--aksen); }
+        .kartu.sembunyi { display: none; }
+        .label {
+            display: inline-block; font-size: .82rem; font-weight: 500; padding: 2px 10px;
+            border-radius: 999px; background: var(--aksen-bg); color: var(--aksen);
+        }
+        .kartu h3 { margin: 10px 0 4px; font-size: 1.2rem; }
+        .kartu p { margin: 0; color: var(--samar); font-size: .95rem; }
+        .pesan-kosong { display: none; text-align: center; color: var(--samar); padding: 32px 0; }
+        .pesan-kosong.tampil { display: block; }
+        .kaki { max-width: 1000px; margin: 0 auto; padding: 20px; color: var(--samar); font-size: .9rem; border-top: 1px solid var(--garis); }
+    </style>
+</head>
+<body>
+
+    <!-- ===== Bagian atas ===== -->
+    <header class="header">
+        <h2 class="logo">Chay</h2>
+        <button id="tombol-tema" type="button">Mode gelap</button>
+    </header>
+
+    <main class="isi">
+
+        <!-- ===== Perkenalan ===== -->
+        <section class="perkenalan">
+            <h1>Halo, saya Chayara Alima</h1>
+            <p>Mahasiswa Sistem Informasi, mata kuliah Praktikum Pemrograman Web Dasar Kelas: A. Halaman ini menyimpan semua tugas, proyek, dan modul saya.</p>
+        </section>
+
+        <!-- ===== Daftar proyek ===== -->
+        <h2 class="judul-bagian">Tugas dan proyek saya</h2>
+
+        <input type="text" id="cari" placeholder="Cari tugas, misalnya kalkulator..." aria-label="Cari tugas">
+
+        <section class="daftar-proyek">
+            <!-- Satu kartu = satu tugas. Format tiap kartu sama: label, judul, deskripsi.
+            Mau menambah? Salin satu blok <a class="kartu">, lalu ubah label, href, judul, dan deskripsinya. -->
+
+            <a class="kartu" href="buku-tamu-digital/index.html">
+                <span class="label">Proyek</span>
+                <h3>Buku Tamu Digital</h3>
+                <p>Formulir pencatatan tamu kantor.</p>
+            </a>
+
+            <a class="kartu" href="mav-platform/index.html">
+                <span class="label">Proyek</span>
+                <h3>MAV Platform</h3>
+                <p>Menu berbeda untuk setiap peran pengguna.</p>
+            </a>
+
+            <a class="kartu" href="portofolio/index.html">
+                <span class="label">Proyek</span>
+                <h3>Portofolio Pribadi</h3>
+                <p>Halaman perkenalan dengan foto dan modul PDF.</p>
+            </a>
+
+            <a class="kartu" href="warung/index.html">
+                <span class="label">Proyek</span>
+                <h3>Warung</h3>
+                <p>Aplikasi warung lengkap dengan database.</p>
+            </a>
+
+            <a class="kartu" href="PPWD2026/index.php">
+                <span class="label">Proyek PHP</span>
+                <h3>Aplikasi PPWD 2026</h3>
+                <p>Tambah dan hapus data dengan PHP dan database (butuh hosting PHP).</p>
+            </a>
+
+            <a class="kartu" href="PPWD-M2/index.html">
+                <span class="label">Praktikum 02</span>
+                <h3>Pertemuan 2 (HTML)</h3>
+                <p>Latihan dasar HTML.</p>
+            </a>
+
+            <a class="kartu" href="PPWD-M2/index.php">
+                <span class="label">Praktikum 02</span>
+                <h3>Pertemuan 2 (PHP)</h3>
+                <p>Latihan dasar PHP (butuh hosting PHP).</p>
+            </a>
+
+            <a class="kartu" href="PPWD-M3/Aplikasi_New_2026/index.html">
+                <span class="label">Praktikum 03</span>
+                <h3>Aplikasi New 2026</h3>
+                <p>Aplikasi dari tiga bab latihan.</p>
+            </a>
+
+            <a class="kartu" href="PPWD-M5/1-kalkulator.html">
+                <span class="label">Praktikum 05</span>
+                <h3>Kalkulator</h3>
+                <p>Kalkulator dengan JavaScript.</p>
+            </a>
+
+            <a class="kartu" href="PPWD-M5/2-kalkulatordiskon.html">
+                <span class="label">Praktikum 05</span>
+                <h3>Kalkulator Diskon</h3>
+                <p>Menghitung harga setelah diskon.</p>
+            </a>
+
+            <a class="kartu" href="PPWD-M5/3-konversinilaimahasiswa.html">
+                <span class="label">Praktikum 05</span>
+                <h3>Konversi Nilai Mahasiswa</h3>
+                <p>Mengubah nilai angka menjadi nilai huruf.</p>
+            </a>
+
+            <a class="kartu" href="PPWD-M5/4-kalkulatorBMI.html">
+                <span class="label">Praktikum 05</span>
+                <h3>Kalkulator BMI</h3>
+                <p>Menghitung indeks massa tubuh.</p>
+            </a>
+
+            <a class="kartu" href="PPWD-M5/5-konversisuhu.html">
+                <span class="label">Praktikum 05</span>
+                <h3>Konversi Suhu</h3>
+                <p>Mengubah suhu antar satuan.</p>
+            </a>
+
+            <a class="kartu" href="PPWD-M5/6-deretbilanganganjil.html">
+                <span class="label">Praktikum 05</span>
+                <h3>Deret Bilangan Ganjil</h3>
+                <p>Menampilkan deret bilangan ganjil.</p>
+            </a>
+
+            <a class="kartu" href="PPWD-M5/7-kalkulatorsederhana.html">
+                <span class="label">Praktikum 05</span>
+                <h3>Kalkulator Sederhana</h3>
+                <p>Operasi hitung dasar dengan JavaScript.</p>
+            </a>
+
+            <a class="kartu" href="PPWD-M6/">
+                <span class="label">Praktikum 06</span>
+                <h3>Laporan Pertemuan 6</h3>
+                <p>Laporan praktikum dalam format Word.</p>
+            </a>
+
+            <a class="kartu" href="PraktikumJQuery/">
+                <span class="label">Praktikum 09</span>
+                <h3>Praktikum jQuery</h3>
+                <p>Latihan jQuery pertemuan 9.</p>
+            </a>
+
+            <a class="kartu" href="PPWD-M11/webkopi.html">
+                <span class="label">Praktikum 11</span>
+                <h3>Web Kopi</h3>
+                <p>Halaman website kedai kopi.</p>
+            </a>
+
+            <a class="kartu" href="PPWD-M11/tugasmandiri/">
+                <span class="label">Tugas 11</span>
+                <h3>Tugas Mandiri</h3>
+                <p>Tugas mandiri pertemuan 11.</p>
+            </a>
+
+            <a class="kartu" href="PPWD-M12/portal_berita.html">
+                <span class="label">Praktikum 12</span>
+                <h3>Portal Berita</h3>
+                <p>Halaman portal berita.</p>
+            </a>
+
+            <a class="kartu" href="UTS_H1101251056_ChayaraAlima/">
+                <span class="label">Ujian</span>
+                <h3>UTS</h3>
+                <p>Jawaban Ujian Tengah Semester Pemrograman Web.</p>
+            </a>
+
+            <a class="kartu" href="SEMUA%20MODUL%20PPWD/PPWD-M1.pdf">
+                <span class="label">Modul</span>
+                <h3>Modul Pertemuan 1</h3>
+                <p>Materi pengantar (PDF).</p>
+            </a>
+
+            <a class="kartu" href="SEMUA%20MODUL%20PPWD/PPWD%202026%20M2.pdf">
+                <span class="label">Modul</span>
+                <h3>Modul Pertemuan 2</h3>
+                <p>Materi PPWD 2026 pertemuan 2 (PDF).</p>
+            </a>
+
+            <a class="kartu" href="SEMUA%20MODUL%20PPWD/MODULPPWD7.pdf">
+                <span class="label">Modul</span>
+                <h3>Modul Pertemuan 7</h3>
+                <p>Materi pertemuan 7 (PDF).</p>
+            </a>
+
+            <a class="kartu" href="SEMUA%20MODUL%20PPWD/MODULBUATWEB.pdf">
+                <span class="label">Modul</span>
+                <h3>Modul Buat Web</h3>
+                <p>Panduan membuat halaman web (PDF).</p>
+            </a>
+
+            <a class="kartu" href="SEMUA%20MODUL%20PPWD/DESAINWEB%28CSS%29.pdf">
+                <span class="label">Modul</span>
+                <h3>Desain Web (CSS)</h3>
+                <p>Materi desain tampilan dengan CSS (PDF).</p>
+            </a>
+
+            <a class="kartu" href="SEMUA%20MODUL%20PPWD/JAVASCRIPT.pdf">
+                <span class="label">Modul</span>
+                <h3>JavaScript</h3>
+                <p>Materi dasar JavaScript (PDF).</p>
+            </a>
+
+            <a class="kartu" href="SEMUA%20MODUL%20PPWD/DEPLOYVERCEL.pdf">
+                <span class="label">Modul</span>
+                <h3>Deploy ke Vercel</h3>
+                <p>Cara mempublikasikan web ke Vercel (PDF).</p>
+            </a>
+
+            <a class="kartu" href="SEMUA%20MODUL%20PPWD/RPS.pdf">
+                <span class="label">Modul</span>
+                <h3>RPS</h3>
+                <p>Rencana pembelajaran semester (PDF).</p>
+            </a>
+
+            <a class="kartu" href="SEMUA%20MODUL%20PPWD/SOALUTS.pdf">
+                <span class="label">Modul</span>
+                <h3>Soal UTS</h3>
+                <p>Soal ujian tengah semester (PDF).</p>
+            </a>
+
+        </section>
+
+        <p id="pesan-kosong" class="pesan-kosong">Tugas tidak ditemukan.</p>
+    </main>
+
+    <footer class="kaki">&copy; 2026 Chayara Alima</footer>
+
+    <script>
+        // ----- Pencarian -----
+        var cari = document.getElementById("cari");
+        var kartu = document.querySelectorAll(".kartu");
+        var kosong = document.getElementById("pesan-kosong");
+
+        cari.addEventListener("input", function () {
+            var kata = cari.value.trim().toLowerCase();
+            var ada = 0;
+            kartu.forEach(function (k) {
+                var cocok = k.textContent.toLowerCase().indexOf(kata) !== -1;
+                k.classList.toggle("sembunyi", !cocok);
+                if (cocok) ada++;
+            });
+            kosong.classList.toggle("tampil", ada === 0);
+        });
+
+        // ----- Mode gelap -----
+        var tombol = document.getElementById("tombol-tema");
+        var akar = document.documentElement;
+
+        function setTema(tema) {
+            akar.setAttribute("data-theme", tema);
+            tombol.textContent = tema === "dark" ? "Mode terang" : "Mode gelap";
+            try { localStorage.setItem("tema", tema); } catch (e) {}
+        }
+        var awal = null;
+        try { awal = localStorage.getItem("tema"); } catch (e) {}
+        if (!awal) awal = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        setTema(awal);
+        tombol.addEventListener("click", function () {
+            setTema(akar.getAttribute("data-theme") === "dark" ? "light" : "dark");
+        });
+    </script>
+</body>
+</html>

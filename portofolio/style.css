@@ -1,0 +1,209 @@
+/*Import Font Aesthetic (Playfair Display & Plus Jakarta Sans)*/
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
+
+/*Palette Warna (Dominan Baby Blue & Deep Navy Clean)*/
+:root {
+    --baby-blue: #bae6fd;
+    --baby-blue-hover: #7dd3fc;
+    --baby-blue-light: #f0f9ff;
+    --baby-blue-border: #cbd5e1;
+    --baby-blue-focus: #38bdf8;
+    --baby-blue-tint: #e0f2fe;
+    --deep-navy: #0b192c;
+    --navy-secondary: #1e293b;
+    --gray-zebra: #f8fafc;
+}
+
+/*Pengaturan Dasar & Smooth Scroll*/
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.7;
+    color: var(--deep-navy);
+    background-color: var(--baby-blue-light); /* Latar belakang Baby Blue sangat lembut */
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.5px;
+}
+
+/*Header (Gradasi Elegat Deep Navy ke Soft Baby Blue)*/
+.header {
+    background: linear-gradient(135deg, #0b192c 0%, #1e3a8a 100%);
+    text-align: center;
+    padding: 50px 20px;
+    border-bottom: 4px solid var(--baby-blue); /* Aksentik garis bawah Baby Blue */
+}
+
+.foto-profil {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--baby-blue);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 16px;
+}
+
+.header h1 {
+    font-size: 38px;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.header p {
+    font-size: 16px;
+    color: var(--baby-blue);
+    font-weight: 500;
+}
+
+/*Navigasi (Tentang, Jadwal, Hobi, Kontak)*/
+.nav {
+    background-color: var(--deep-navy);
+    text-align: center;
+    padding: 14px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.nav a {
+    color: var(--baby-blue);
+    text-decoration: none;
+    margin: 0 6px;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.nav a:hover {
+    color: var(--deep-navy);
+    background-color: var(--baby-blue-hover); /* Sorotan menu menjadi Baby Blue lebih terang saat hover */
+}
+
+/*Konten*/
+.konten {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.konten section {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 28px;
+    box-shadow: 0 4px 15px rgba(11, 25, 44, 0.04);
+    border: 1px solid var(--baby-blue-border);
+}
+
+.konten h2 {
+    color: var(--deep-navy);
+    border-bottom: 3px solid var(--baby-blue); /* Garis bawah seksi judul Baby Blue */
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+
+.konten p {
+    margin-bottom: 14px;
+    color: #334155;
+}
+
+/*Tabel*/
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+th, td {
+    border: 1px solid var(--baby-blue-border);
+    padding: 12px 16px;
+    text-align: left;
+}
+
+th {
+    background-color: var(--deep-navy);
+    color: var(--baby-blue);
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+}
+
+tr:nth-child(even) {
+    background-color: var(--gray-zebra);
+}
+
+tr:hover {
+    background-color: var(--baby-blue-tint); /* Hover tabel nuansa Baby Blue */
+    transition: background-color 0.2s ease;
+}
+
+/*Formulir*/
+form label {
+    display: block;
+    font-weight: 600;
+    margin: 14px 0 6px;
+    color: var(--deep-navy);
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid var(--baby-blue-border);
+    border-radius: 10px;
+    font-family: inherit;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+form input:focus,
+form textarea:focus {
+    outline: none;
+    border-color: var(--baby-blue-focus);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+}
+
+form button {
+    margin-top: 20px;
+    background-color: var(--baby-blue);
+    color: var(--deep-navy);
+    font-weight: 600;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+form button:hover {
+    background-color: var(--deep-navy);
+    color: var(--baby-blue-hover);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(11, 25, 44, 0.2);
+}
+
+/*Footer*/
+.footer {
+    background-color: var(--deep-navy);
+    color: var(--baby-blue);
+    text-align: center;
+    padding: 24px;
+    font-size: 14px;
+    border-top: 3px solid var(--baby-blue);
+}

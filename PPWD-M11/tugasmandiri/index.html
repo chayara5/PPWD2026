@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESI - Event Sistem Informasi</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+</head>
+<body>
+
+  <nav>
+    <div class="wrap">
+      <a href="#atas" class="logo">ESI - Event Sistem Informasi</a>
+      <button id="btnMenu" type="button">Menu</button>
+      <ul id="navList">
+        <li><a href="#event">Daftar Event</a></li>
+        <li><a href="#info">Info</a></li>
+        <li><a href="#daftar">Daftar</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Halaman 1: Hero -->
+  <header id="atas" class="hero halaman">
+    <div class="wrap">
+      <h1>Pendaftaran Event Program Studi Sistem Informasi</h1>
+      <p>Satu tempat untuk daftar semua acara untuk mahasiswa program studi Sistem Informasi, jadi tidak perlu lagi isi banyak form berbeda!</p>
+      <a href="#daftar" class="btn-hero">Daftar sekarang</a>
+    </div>
+  </header>
+
+  <!-- Halaman 2: Daftar Event -->
+  <section id="event" class="halaman">
+    <div class="wrap">
+      <h2>Daftar Event</h2>
+
+      <div class="tabs">
+        <button type="button" class="tab aktif" data-target="#tab-seminar">Seminar</button>
+        <button type="button" class="tab" data-target="#tab-lomba">Lomba</button>
+        <button type="button" class="tab" data-target="#tab-workshop">Workshop</button>
+      </div>
+
+      <!-- Isi event di bawah ini silakan diganti sesuai acara prodi -->
+      <div id="tab-seminar" class="panel">
+        <div class="kartu">
+          <h3>SINTA 2: KULIAH UMUM JURUSAN SISTEM INFORMASI</h3>
+          <p>Kuliah Umum dengan tema ”Smart Technology, Smart Business: The Role of Information Systems in the Digital Industry”</p>
+          <span class="label">Rabu, 28 Oktober 2026</span>
+          <span class="label">Teater 1 Gedung Konferensi Untan</span>
+        </div>
+      </div>
+
+      <div id="tab-lomba" class="panel">
+        <div class="kartu">
+          <h3>Lomba Desain Web</h3>
+          <p>Lomba membuat landing page, terbuka untuk semua angkatan secara individu.</p>
+          <span class="label">Sabtu, 29 November 2026</span>
+          <span class="label">Lab Komputer</span>
+        </div>
+        <div class="kartu">
+          <h3>Lomba Coding Cepat</h3>
+          <p>Selesaikan soal pemrograman dalam waktu terbatas, tim maksimal 2 orang.</p>
+          <span class="label">Minggu, 30 November 2026</span>
+          <span class="label">Lab Komputer</span>
+        </div>
+      </div>
+
+      <div id="tab-workshop" class="panel">
+        <div class="kartu">
+          <h3>Workshop Dasar Git dan GitHub</h3>
+          <p>Belajar menyimpan dan membagi kode proyek bersama tim. Bawa laptop sendiri.</p>
+          <span class="label">Sabtu, 6 Desember 2026</span>
+          <span class="label">Lab Komputer</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Halaman 3: Info -->
+  <section id="info" class="abu halaman">
+    <div class="wrap sempit">
+      <h2>Tentang Acara Prodi</h2>
+      <p>Prodi rutin mengadakan acara untuk mahasiswa, dan pendaftarannya wajib dilakukan lewat halaman ini agar panitia bisa menyiapkan tempat dan konsumsi.</p>
+      <button type="button" id="btnFaq">Lihat cara daftar</button>
+      <ol id="faq">
+        <li>Pilih event yang ingin diikuti pada tab di atas.</li>
+        <li>Isi formulir pendaftaran di bawah dengan data yang benar.</li>
+        <li>Tunggu konfirmasi dari panitia lewat WhatsApp atau email.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Halaman 4: Formulir -->
+  <section id="daftar" class="halaman">
+    <div class="wrap sempit">
+      <h2>Formulir Pendaftaran</h2>
+      <form id="formDaftar" novalidate>
+        <div class="baris">
+          <label for="nama">Nama lengkap</label>
+          <input type="text" id="nama" name="nama" placeholder="Sesuai KTM">
+        </div>
+        <div class="baris">
+          <label for="nim">NIM</label>
+          <input type="text" id="nim" name="nim" placeholder="Contoh: H1101xxxxxx">
+        </div>
+        <div class="baris">
+          <label for="email">Email</label>
+          <input type="text" id="email" name="email" placeholder="NIM@student.untan.ac.id">
+        </div>
+        <div class="baris">
+          <label for="hp">No. WhatsApp</label>
+          <input type="text" id="hp" name="hp" placeholder="08xxxxxxxxxx">
+        </div>
+        <div class="baris">
+          <label for="angkatan">Angkatan</label>
+          <select id="angkatan" name="angkatan">
+            <option value="">-- Pilih angkatan --</option>
+            <option>2022</option>
+            <option>2023</option>
+            <option>2024</option>
+            <option>2025</option>
+            <option>2026</option>
+          </select>
+        </div>
+        <div class="baris">
+          <label for="event-pilih">Event yang diikuti</label>
+          <select id="event-pilih" name="event">
+            <option value="">-- Pilih event --</option>
+            <option>SINTA 2: KULIAH UMUM JURUSAN SISTEM INFORMASI</option>
+            <option>Lomba Desain Web</option>
+            <option>Lomba Coding Cepat</option>
+            <option>Workshop Dasar Git dan GitHub</option>
+          </select>
+        </div>
+        <div class="baris cek">
+          <input type="checkbox" id="setuju" name="setuju">
+          <label for="setuju">Data yang saya isi sudah benar</label>
+        </div>
+        <button type="submit" class="btn-kirim">Kirim Pendaftaran</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Event Prodi - Tugas Mandiri Praktikum PWD Minggu 11</p>
+  </footer>
+
+  <div id="toast"></div>
+  <button id="keAtas" type="button" aria-label="Kembali ke atas">&uarr;</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

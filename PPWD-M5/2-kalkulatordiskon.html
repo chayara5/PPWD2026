@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Kalkulator Diskon</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background: #eaf2fb;
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+    margin: 0;
+  }
+
+  .card {
+    background: #ffffff;
+    border: 1px solid #bcd4ee;
+    border-radius: 8px;
+    padding: 24px 28px;
+    width: 320px;
+  }
+
+  h2 {
+    margin-top: 0;
+    color: #1a5aa8;
+    font-size: 20px;
+  }
+
+  label {
+    display: block;
+    margin: 12px 0 6px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  input[type="number"] {
+    width: 100%;
+    padding: 9px;
+    border: 1px solid #a9c6e6;
+    border-radius: 5px;
+    font-size: 15px;
+  }
+
+  input[type="number"]:focus {
+    outline: none;
+    border-color: #1a5aa8;
+  }
+
+  .button-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+  }
+
+  .btn-hitung {
+    background: #1a5aa8;
+    color: #fff;
+  }
+
+  .btn-hitung:hover {
+    background: #144a89;
+  }
+
+  .btn-reset {
+    background: #dce8f7;
+    color: #1a5aa8;
+  }
+
+  .btn-reset:hover {
+    background: #c8dcf2;
+  }
+
+  /* ==== Kotak Hasil yang lebih rapi ==== */
+  .hasil {
+    margin-top: 16px;
+    padding: 14px 16px;
+    background: #eaf2fb;
+    border-radius: 6px;
+    display: none;
+  }
+
+  .hasil.show {
+    display: block;
+  }
+
+  .hasil-status {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  .hasil-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 8px;
+    border-top: 1px solid #cfe0f2;
+  }
+
+  .hasil-row .label {
+    font-size: 13px;
+    color: #555;
+    font-weight: normal;
+    margin: 0;
+  }
+
+  .hasil-row .nilai {
+    font-size: 17px;
+    font-weight: bold;
+    color: #1a5aa8;
+  }
+
+  .hasil.diskon .nilai {
+    color: #1a8a4a;
+  }
+
+  .badge-diskon {
+    display: inline-block;
+    background: #dcf5e4;
+    color: #1a8a4a;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2>Kalkulator Diskon</h2>
+  <label for="belanja">Masukkan Total Belanja (Rp):</label>
+  <input type="number" id="belanja" placeholder="Contoh: 150000">
+
+  <div class="button-row">
+    <button class="btn-hitung" onclick="hitungDiskon()">Hitung</button>
+    <button class="btn-reset" onclick="resetForm()">Reset</button>
+  </div>
+
+  <div class="hasil" id="hasilDiskon">
+    <div class="hasil-status" id="hasilStatus"></div>
+    <div class="hasil-row">
+      <span class="label">Total yang harus dibayar</span>
+      <span class="nilai" id="hasilNilai">Rp 0</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  function hitungDiskon() {
+    // 1. Ambil nilai dari input, masih berbentuk teks (string)
+    const belanjaInput = document.getElementById("belanja").value;
+    const hasilDiv = document.getElementById("hasilDiskon");
+    const statusEl = document.getElementById("hasilStatus");
+    const nilaiEl = document.getElementById("hasilNilai");
+
+    // 2. Validasi: pastikan user sudah mengisi input
+    if (belanjaInput === "") {
+      hasilDiv.classList.remove("diskon");
+      hasilDiv.classList.add("show");
+      statusEl.innerHTML = "Silakan masukkan total belanja terlebih dahulu.";
+      nilaiEl.parentElement.style.display = "none";
+      return;
+    }
+    nilaiEl.parentElement.style.display = "flex";
+
+    // 3. Ubah teks menjadi angka desimal agar bisa dihitung
+    const totalBelanja = parseFloat(belanjaInput);
+
+    let totalBayar = totalBelanja;
+
+    // 4. Logika utama: cek apakah belanja > 100.000
+    if (totalBelanja > 100000) {
+      const diskon = totalBelanja * 0.1;       // hitung 10% dari total belanja
+      totalBayar = totalBelanja - diskon;       // kurangi total belanja dengan diskon
+
+      statusEl.innerHTML =
+        '<span class="badge-diskon">Diskon 10% didapat</span><br>' +
+        "Hemat Rp " + diskon.toLocaleString("id-ID");
+
+      hasilDiv.classList.add("diskon");
+    } else {
+      // 5. Jika syarat tidak terpenuhi, tidak ada diskon
+      statusEl.innerHTML = "Tidak ada diskon — belanja belum melebihi Rp 100.000";
+      hasilDiv.classList.remove("diskon");
+    }
+
+    // 6. Tampilkan hasil ke halaman
+    nilaiEl.innerText = "Rp " + totalBayar.toLocaleString("id-ID");
+    hasilDiv.classList.add("show");
+  }
+
+  // Fungsi reset: mengosongkan input dan hasil
+  function resetForm() {
+    document.getElementById("belanja").value = "";
+    const hasilDiv = document.getElementById("hasilDiskon");
+    hasilDiv.classList.remove("show", "diskon");
+    document.getElementById("hasilStatus").innerHTML = "";
+    document.getElementById("hasilNilai").innerText = "Rp 0";
+  }
+</script>
+
+</body>
+</html>
