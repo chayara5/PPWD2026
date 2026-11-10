@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matcha Haus Pontianak - Matcha &amp; Coffee Shop</title>
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+  <!-- Font Awesome untuk ikon -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- CSS Eksternal -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <i class="fas fa-mug-hot"></i>
+        <span>Matcha Haus</span>
+      </div>
+      <div class="nav-menu" id="navMenu">
+        <a class="nav-link active" data-filter="all">Semua</a>
+        <a class="nav-link" data-filter="matcha">Matcha</a>
+        <a class="nav-link" data-filter="kopi">Kopi</a>
+        <a class="nav-link" data-filter="snack">Snack</a>
+      </div>
+      <div class="cart-btn" id="cartBtn">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-text">Keranjang</span>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </nav>
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Selamat Datang di <span>Matcha Haus</span> 🍵</h1>
+      <p>Matcha premium &amp; kopi pilihan, diseduh segar setiap hari. Pilih
+      favoritmu dan pesan sekarang!</p>
+      <div class="search-box">
+        <input type="text" id="searchProduk" placeholder="Cari matcha atau kopi favoritmu...">
+        <i class="fas fa-search"></i>
+      </div>
+    </div>
+  </section>
+  <!-- ========== PRODUK SECTION ========== -->
+  <section class="produk-section">
+    <div class="section-header">
+      <h2><i class="fas fa-list"></i> Menu Kami</h2>
+      <div class="filter-btns">
+        <button class="filter-btn active" data-cat="all">Semua</button>
+        <button class="filter-btn" data-cat="matcha">Matcha</button>
+        <button class="filter-btn" data-cat="kopi">Kopi</button>
+        <button class="filter-btn" data-cat="snack">Snack</button>
+      </div>
+    </div>
+    <!-- Grid produk akan di-render oleh jQuery -->
+    <div class="produk-grid" id="produkGrid"></div>
+  </section>
+  <!-- ========== CART SIDEBAR ========== -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3><i class="fas fa-shopping-bag"></i> Keranjang Belanja</h3>
+      <button class="cart-close" id="cartClose">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <!-- Item keranjang akan di-render oleh jQuery -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span class="total-price" id="cartTotal">Rp 0</span>
+      </div>
+      <button class="btn-checkout" id="btnCheckout">
+        <i class="fas fa-check-circle"></i> Pesan Sekarang
+      </button>
+    </div>
+  </aside>
+  <!-- ========== MODAL FORM PEMBELI ========== -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3><i class="fas fa-user-check"></i> Data Pembeli</h3>
+        <button type="button" class="cart-close" id="modalClose"><i class="fas fa-times"></i></button>
+      </div>
+      <form id="formCheckout" novalidate>
+        <div class="ringkasan" id="ringkasanOrder"></div>
+        <div class="form-group">
+          <label for="inpNama">Nama Lengkap</label>
+          <input type="text" id="inpNama" placeholder="Contoh: Budi Santoso">
+          <small class="error-msg"></small>
+        </div>
+        <div class="form-group">
+          <label for="inpAlamat">Alamat Pengiriman</label>
+          <textarea id="inpAlamat" rows="3" placeholder="Jalan, nomor rumah, kecamatan..."></textarea>
+          <small class="error-msg"></small>
+        </div>
+        <div class="form-group">
+          <label for="inpHp">No HP</label>
+          <input type="tel" id="inpHp" placeholder="081234567890">
+          <small class="error-msg"></small>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-batal" id="btnBatal">Batal</button>
+          <button type="submit" class="btn-checkout" id="btnKirim"><i class="fas fa-check-circle"></i> Konfirmasi Pesanan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========== TOAST NOTIFICATION ========== -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Produk ditambahkan!</span>
+  </div>
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <p><strong>Matcha Haus</strong> © 2025</p>
+    <p>Praktikum Pemrograman Web Dasar · Prodi Sistem Informasi</p>
+  </footer>
+  <!-- JavaScript Eksternal -->
+  <script src="script.js"></script>
+</body>
+</html>
