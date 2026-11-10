@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChaysNews - Kabar Teknologi yang Berkelas</title>
+
+  <!-- Bootstrap 5 CSS via CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Jost:wght@300;400;500&display=swap">
+
+  <style>
+    :root {
+      --plum: #2a1520;
+      --blush: #f7ece9;
+      --mawar: #d9a3a0;
+      --emas: #b8975a;
+      --abu: #6f6168;
+    }
+    body { font-family: 'Jost', system-ui, sans-serif; font-weight: 300; background: var(--blush); color: var(--plum); line-height: 1.7; }
+    h1, h2, h3, h4, h5, .navbar-brand { font-family: 'Playfair Display', Georgia, serif; font-weight: 500; }
+    .nav-link, .badge, .btn { font-family: 'Jost', sans-serif; letter-spacing: .08em; }
+
+    /* Navbar tetap memakai bg-dark */
+    .navbar.bg-dark { background-color: var(--plum) !important; border-bottom: 1px solid var(--emas); padding: 1rem 0; }
+    .navbar-brand { font-size: 1.9rem; font-style: italic; letter-spacing: .02em; }
+    .navbar-brand b { font-style: normal; color: var(--emas); font-weight: 700; }
+    .nav-link { font-size: .85rem; text-transform: uppercase; }
+    .nav-link.active, .nav-link:hover { color: var(--mawar) !important; }
+
+    /* Hero */
+    .hero {
+      position: relative; min-height: 460px; display: flex; align-items: flex-end; color: #fff;
+      background: linear-gradient(135deg, #1a0c14 0%, #3b1c2c 60%, #5a2d42 100%);
+      overflow: hidden; border-radius: 4px;
+    }
+    .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .5; }
+    .hero::after { content: ""; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,12,20,.95) 8%, rgba(26,12,20,.05) 75%); }
+    .hero .isi { position: relative; z-index: 1; padding: 2.5rem; max-width: 760px; }
+    .hero h1 { font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.2; }
+    .hero .garis { width: 60px; height: 2px; background: var(--emas); margin-bottom: 1.2rem; }
+
+    /* Kartu */
+    .kartu { background: #fff; border: 1px solid #ead7d3; border-radius: 4px; overflow: hidden; }
+    .gambar-utama { width: 100%; height: 300px; object-fit: cover; }
+    .thumb { width: 100%; height: 190px; object-fit: cover; }
+    .kategori { color: var(--emas); font-size: .75rem; text-transform: uppercase; letter-spacing: .18em; font-weight: 500; }
+    .meta { color: var(--abu); font-size: .85rem; }
+
+    .btn-chic { border: 1px solid var(--plum); color: var(--plum); border-radius: 0; font-size: .8rem; text-transform: uppercase; padding: .6rem 1.4rem; }
+    .btn-chic:hover { background: var(--plum); color: #fff; }
+    .btn-emas { background: var(--emas); color: #fff; border: 1px solid var(--emas); border-radius: 0; font-size: .8rem; text-transform: uppercase; padding: .6rem 1.4rem; }
+    .btn-emas:hover { background: transparent; color: #fff; border-color: #fff; }
+
+    /* Sidebar */
+    .tren-no { font-family: 'Playfair Display', serif; font-style: italic; font-size: 2rem; color: var(--mawar); width: 2rem; flex-shrink: 0; line-height: 1; }
+    .tren-img { width: 62px; height: 62px; object-fit: cover; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--mawar); }
+    .tren a { color: var(--plum); text-decoration: none; font-weight: 400; }
+    .tren a:hover { color: var(--emas); }
+    .tren .item + .item { border-top: 1px solid #f0e0dc; padding-top: 1rem; margin-top: 1rem; }
+
+    .judul-bagian { font-size: 1.8rem; text-align: center; margin-bottom: 2rem; }
+    .judul-bagian::after { content: ""; display: block; width: 50px; height: 2px; background: var(--emas); margin: .6rem auto 0; }
+    .judul-kecil { font-size: 1.3rem; padding-bottom: .6rem; border-bottom: 1px solid var(--emas); margin-bottom: 1.4rem; }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER / NAVBAR ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Chays<b>News</b></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#menuUtama" aria-controls="menuUtama"
+              aria-expanded="false" aria-label="Buka menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menuUtama">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#">Terkini</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Gawai</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Kecerdasan Buatan</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Gaya Hidup Digital</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Kampus</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-5">
+
+    <!-- ===== HEADLINE UTAMA (HERO) ===== -->
+    <div class="row mb-5">
+      <div class="col-12">
+        <div class="hero">
+          <img src="https://picsum.photos/seed/chaysnews-chic-hero/1400/750" alt="Ruang kerja modern yang elegan">
+          <div class="isi">
+            <div class="garis"></div>
+            <span class="kategori">Sorotan Utama</span>
+            <h1 class="mt-2 mb-3">Desain Antarmuka Minimalis Jadi Tren Aplikasi Tahun Ini</h1>
+            <p class="mb-4">Pengembang kini memilih tampilan bersih, tipografi lembut, dan ruang kosong yang lega agar pengguna betah berlama-lama.</p>
+            <a href="#" class="btn btn-emas">Baca selengkapnya</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== BERITA UTAMA (col-lg-8) + SIDEBAR TRENDING (col-lg-4) ===== -->
+    <div class="row g-5 mb-5">
+
+      <div class="col-12 col-lg-8">
+        <div class="kartu h-100">
+          <img class="gambar-utama" src="https://picsum.photos/seed/chaysnews-chic-main/1000/600" alt="Laptop di meja kerja yang rapi">
+          <div class="p-4 p-md-5">
+            <span class="kategori">Kecerdasan Buatan</span>
+            <h2 class="h2 mt-2">Asisten AI Hadir di Kelas Praktikum, Mahasiswa Belajar Lebih Cepat</h2>
+            <p class="meta mb-3">Oleh Redaksi ChaysNews &nbsp;|&nbsp; 27 Oktober 2026</p>
+            <p>Sejumlah kampus mulai mengizinkan asisten AI untuk membantu menelusuri kesalahan kode. Para dosen berpesan agar alat ini dipakai untuk memahami, bukan sekadar menyalin hasil.</p>
+            <a href="#" class="btn btn-chic mt-2">Lanjut membaca</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-4">
+        <div class="kartu h-100 p-4 tren">
+          <h3 class="judul-kecil">Paling Dibaca</h3>
+
+          <div class="item d-flex align-items-center gap-3">
+            <span class="tren-no">1</span>
+            <img class="tren-img" src="https://picsum.photos/seed/chays-chic-t1/200/200" alt="">
+            <a href="#">Startup lokal raih pendanaan seri A senilai 200 miliar rupiah</a>
+          </div>
+          <div class="item d-flex align-items-center gap-3">
+            <span class="tren-no">2</span>
+            <img class="tren-img" src="https://picsum.photos/seed/chays-chic-t2/200/200" alt="">
+            <a href="#">Passkey mulai menggantikan kata sandi di layanan perbankan</a>
+          </div>
+          <div class="item d-flex align-items-center gap-3">
+            <span class="tren-no">3</span>
+            <img class="tren-img" src="https://picsum.photos/seed/chays-chic-t3/200/200" alt="">
+            <a href="#">Ponsel lipat generasi terbaru resmi masuk Indonesia</a>
+          </div>
+          <div class="item d-flex align-items-center gap-3">
+            <span class="tren-no">4</span>
+            <img class="tren-img" src="https://picsum.photos/seed/chays-chic-t4/200/200" alt="">
+            <a href="#">Memahami grid 12 kolom Bootstrap dalam lima menit</a>
+          </div>
+          <div class="item d-flex align-items-center gap-3">
+            <span class="tren-no">5</span>
+            <img class="tren-img" src="https://picsum.photos/seed/chays-chic-t5/200/200" alt="">
+            <a href="#">Profesi teknologi yang paling dicari tahun depan</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== GRID BERITA TERBARU (4 kartu: col-12 col-md-6 col-lg-3) ===== -->
+    <h3 class="judul-bagian">Berita Terbaru</h3>
+    <div class="row g-4">
+
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="kartu h-100">
+          <img class="thumb" src="https://picsum.photos/seed/chays-chic-b1/600/450" alt="Ilustrasi keamanan digital">
+          <div class="p-3">
+            <span class="kategori">Keamanan</span>
+            <h5 class="mt-1">Pembaruan Sistem Tutup Celah yang Rawan Disusupi</h5>
+            <p class="meta mb-0">Pengguna diminta segera memperbarui perangkat masing-masing.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="kartu h-100">
+          <img class="thumb" src="https://picsum.photos/seed/chays-chic-b2/600/450" alt="Laptop tipis di atas meja">
+          <div class="p-3">
+            <span class="kategori">Gawai</span>
+            <h5 class="mt-1">Laptop Tipis Berlayar 240 Hz Meluncur Bulan Depan</h5>
+            <p class="meta mb-0">Ringan dibawa kuliah, lancar untuk bekerja dan bermain.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="kartu h-100">
+          <img class="thumb" src="https://picsum.photos/seed/chays-chic-b3/600/450" alt="Langit dan awan">
+          <div class="p-3">
+            <span class="kategori">Cloud</span>
+            <h5 class="mt-1">Cloud Computing untuk Pemula: Dari Mana Memulai?</h5>
+            <p class="meta mb-0">Panduan ringkas memahami layanan awan dan biayanya.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="kartu h-100">
+          <img class="thumb" src="https://picsum.photos/seed/chays-chic-b4/600/450" alt="Suasana turnamen game">
+          <div class="p-3">
+            <span class="kategori">Esports</span>
+            <h5 class="mt-1">Turnamen Esports Antarkampus Dibuka Pekan Ini</h5>
+            <p class="meta mb-0">Ratusan tim mahasiswa berebut gelar juara nasional.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bg-dark text-white py-4">
+    <div class="container text-center">
+      <p class="mb-1 fs-4" style="font-family:'Playfair Display',serif;font-style:italic;">ChaysNews</p>
+      <p class="mb-0 small" style="color:var(--mawar);">&copy; 2026 ChaysNews. Kabar teknologi yang berkelas.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

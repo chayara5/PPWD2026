@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Tugas 3 - Kalkulator Sederhana</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 400px; margin: 50px auto; padding: 20px; background: #f0f8ff; }
+  .kalkulator { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.15); text-align: center; }
+  input, select { padding: 10px 15px; margin: 8px 0; font-size: 16px; width: 80%; box-sizing: border-box; border: 1px solid #ccc; border-radius: 6px; }
+  button { padding: 10px 15px; margin: 5px; font-size: 16px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; }
+  button:hover { background: #2980b9; }
+  .hasil { font-size: 24px; font-weight: bold; color: #2c3e50; margin-top: 20px; padding: 12px; background: #eaf2f8; border-radius: 6px; }
+  .error { background: #fdecea; color: #c0392b; font-size: 16px; }
+</style>
+</head>
+<body>
+  <div class="kalkulator">
+    <h2>🧮 Kalkulator Sederhana</h2>
+
+    <input type="text" id="angka1" placeholder="Masukkan Angka Pertama"><br>
+
+    <select id="operasi">
+      <option value="+">+ (Tambah)</option>
+      <option value="-">− (Kurang)</option>
+      <option value="*">× (Kali)</option>
+      <option value="/">÷ (Bagi)</option>
+    </select><br>
+
+    <input type="text" id="angka2" placeholder="Masukkan Angka Kedua"><br>
+
+    <button onclick="hitung()">Hitung</button>
+    <button onclick="reset()" style="background:#e47c3c;">Reset</button>
+
+    <div class="hasil" id="hasil">Hasil: 0</div>
+  </div>
+
+  <script>
+    function hitung() {
+      let input1 = document.getElementById('angka1').value;
+      let input2 = document.getElementById('angka2').value;
+      let operasi = document.getElementById('operasi').value;
+      let hasilDiv = document.getElementById('hasil');
+
+      // Validasi input kosong
+      if (input1 === "" || input2 === "") {
+        hasilDiv.innerHTML = "❌ Kedua angka harus diisi!";
+        hasilDiv.className = "hasil error";
+        return;
+      }
+
+      let a = parseFloat(input1);
+      let b = parseFloat(input2);
+
+      // Validasi input harus angka
+      if (isNaN(a) || isNaN(b)) {
+        hasilDiv.innerHTML = "❌ Input harus berupa angka!";
+        hasilDiv.className = "hasil error";
+        return;
+      }
+
+      let hasil;
+
+      switch (operasi) {
+        case "+":
+          hasil = a + b;
+          break;
+        case "-":
+          hasil = a - b;
+          break;
+        case "*":
+          hasil = a * b;
+          break;
+        case "/":
+          // Validasi tidak boleh dibagi 0
+          if (b === 0) {
+            hasilDiv.innerHTML = "❌ Tidak bisa membagi dengan 0!";
+            hasilDiv.className = "hasil error";
+            return;
+          }
+          hasil = a / b;
+          break;
+      }
+
+      hasilDiv.className = "hasil";
+      hasilDiv.innerHTML = "Hasil: " + hasil;
+    }
+
+    function reset() {
+      document.getElementById('angka1').value = '';
+      document.getElementById('angka2').value = '';
+      document.getElementById('operasi').selectedIndex = 0;
+      let hasilDiv = document.getElementById('hasil');
+      hasilDiv.className = "hasil";
+      hasilDiv.innerHTML = "Hasil: 0";
+    }
+  </script>
+</body>
+</html>

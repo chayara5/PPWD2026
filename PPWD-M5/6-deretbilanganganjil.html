@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Tugas 2 - Deret Ganjil</title>
+<style>
+  body { font-family: Arial; text-align: center; padding: 40px; background: #f0f2f5; }
+  .container { background: white; padding: 30px; border-radius: 12px; max-width: 420px; margin: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+  input { padding: 10px; width: 80%; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; }
+  button { padding: 10px 25px; background: #2c3e50; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; }
+  button:hover { background: #1a252f; }
+  .hasil { margin-top: 20px; padding: 15px; background: #eaf2f8; border-radius: 6px; text-align: left; word-break: break-word; }
+  .error { background: #fdecea; color: #c0392b; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>🔢 Deret Bilangan Ganjil</h2>
+  <input type="text" id="nilaiN" placeholder="Masukkan nilai N">
+  <button onclick="tampilkanDeret()">Tampilkan</button>
+  <div class="hasil" id="hasil">Masukkan nilai N lalu klik tombol Tampilkan</div>
+</div>
+
+<script>
+function tampilkanDeret() {
+  let inputN = document.getElementById("nilaiN").value;
+  let hasilDiv = document.getElementById("hasil");
+  let n = parseInt(inputN);
+
+  if (inputN === "" || isNaN(n)) {
+    hasilDiv.innerHTML = "❌ Input harus berupa angka!";
+    hasilDiv.className = "hasil error";
+    return;
+  }
+
+  if (n < 1) {
+    hasilDiv.innerHTML = "❌ Masukkan angka positif!";
+    hasilDiv.className = "hasil error";
+    return;
+  }
+
+  let deret = [];
+  for (let i = 1; i <= n; i += 2) {
+    deret.push(i);
+  }
+
+  hasilDiv.className = "hasil";
+  hasilDiv.innerHTML = "Deret bilangan ganjil dari 1 sampai " + n + ":<br><strong>" + deret.join(", ") + "</strong>";
+}
+</script>
+</body>
+</html>
